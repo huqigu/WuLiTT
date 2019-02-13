@@ -16,7 +16,7 @@ class JCTabBarController: UITabBarController {
 
         // Do any additional setup after loading the view.
         addChildViewControllers()
-        
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.gray], for: .normal)
         
     UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.gray], for: .normal)
         
