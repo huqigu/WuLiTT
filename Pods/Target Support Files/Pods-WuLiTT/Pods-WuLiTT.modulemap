@@ -1,0 +1,6 @@
+framework module Pods_WuLiTT {
+  umbrella header "Pods-WuLiTT-umbrella.h"
+
+  export *
+  module * { export * }
+}
