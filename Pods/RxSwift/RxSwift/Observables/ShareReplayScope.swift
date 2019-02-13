@@ -13,7 +13,7 @@ public enum SubjectLifetimeScope {
      **Connections will be isolated from each another.**
 
      Configures the underlying implementation to behave equivalent to.
-     
+
      ```
      source.multicast(makeSubject: { MySubject() }).refCount()
      ```
@@ -25,13 +25,12 @@ public enum SubjectLifetimeScope {
      * Each connection to source observable sequence will use it's own subject.
      * When the number of subscribers drops from 1 to 0 and connection to source sequence is disposed, subject will be cleared.
 
-     
      ```
      let xs = Observable.deferred { () -> Observable<TimeInterval> in
-             print("Performing work ...")
-             return Observable.just(Date().timeIntervalSince1970)
-         }
-         .share(replay: 1, scope: .whileConnected)
+     print("Performing work ...")
+     return Observable.just(Date().timeIntervalSince1970)
+     }
+     .share(replay: 1, scope: .whileConnected)
 
      _ = xs.subscribe(onNext: { print("next \($0)") }, onCompleted: { print("completed\n") })
      _ = xs.subscribe(onNext: { print("next \($0)") }, onCompleted: { print("completed\n") })
@@ -40,7 +39,7 @@ public enum SubjectLifetimeScope {
      ```
 
      Notice how time interval is different and `Performing work ...` is printed each time)
-     
+
      ```
      Performing work ...
      next 1495998900.82141
@@ -54,9 +53,8 @@ public enum SubjectLifetimeScope {
      next 1495998900.82444
      completed
 
-
      ```
-     
+
      */
     case whileConnected
 
@@ -69,31 +67,31 @@ public enum SubjectLifetimeScope {
      ```
      source.multicast(MySubject()).refCount()
      ```
-     
+
      This has the following consequences:
      * Using `retry` or `concat` operators after this operator usually isn't advised.
      * Each connection to source observable sequence will share the same subject.
-     * After number of subscribers drops from 1 to 0 and connection to source observable sequence is dispose, this operator will 
-       continue holding a reference to the same subject.
-       If at some later moment a new observer initiates a new connection to source it can potentially receive
-       some of the stale events received during previous connection.
+     * After number of subscribers drops from 1 to 0 and connection to source observable sequence is dispose, this operator will
+     continue holding a reference to the same subject.
+     If at some later moment a new observer initiates a new connection to source it can potentially receive
+     some of the stale events received during previous connection.
      * After source sequence terminates any new observer will always immediately receive replayed elements and terminal event.
-       No new subscriptions to source observable sequence will be attempted.
+     No new subscriptions to source observable sequence will be attempted.
 
      ```
      let xs = Observable.deferred { () -> Observable<TimeInterval> in
-             print("Performing work ...")
-             return Observable.just(Date().timeIntervalSince1970)
-         }
-         .share(replay: 1, scope: .forever)
+     print("Performing work ...")
+     return Observable.just(Date().timeIntervalSince1970)
+     }
+     .share(replay: 1, scope: .forever)
 
      _ = xs.subscribe(onNext: { print("next \($0)") }, onCompleted: { print("completed\n") })
      _ = xs.subscribe(onNext: { print("next \($0)") }, onCompleted: { print("completed\n") })
      _ = xs.subscribe(onNext: { print("next \($0)") }, onCompleted: { print("completed\n") })
      ```
-     
+
      Notice how time interval is the same, replayed, and `Performing work ...` is printed only once
-     
+
      ```
      Performing work ...
      next 1495999013.76356
@@ -105,16 +103,15 @@ public enum SubjectLifetimeScope {
      next 1495999013.76356
      completed
      ```
-     
-    */
+
+     */
     case forever
 }
 
 extension ObservableType {
-
     /**
      Returns an observable sequence that **shares a single subscription to the underlying sequence**, and immediately upon subscription replays  elements in buffer.
-     
+
      This operator is equivalent to:
      * `.whileConnected`
      ```
@@ -128,7 +125,7 @@ extension ObservableType {
      // Connections won't be isolated from each another.
      source.multicast(Replay.create(bufferSize: replay)).refCount()
      ```
-     
+
      It uses optimized versions of the operators for most common operations.
 
      - parameter replay: Maximum element count of the replay buffer.
@@ -143,14 +140,14 @@ extension ObservableType {
         switch scope {
         case .forever:
             switch replay {
-            case 0: return self.multicast(PublishSubject()).refCount()
-            default: return self.multicast(ReplaySubject.create(bufferSize: replay)).refCount()
+            case 0: return multicast(PublishSubject()).refCount()
+            default: return multicast(ReplaySubject.create(bufferSize: replay)).refCount()
             }
         case .whileConnected:
             switch replay {
-            case 0: return ShareWhileConnected(source: self.asObservable())
-            case 1: return ShareReplay1WhileConnected(source: self.asObservable())
-            default: return self.multicast(makeSubject: { ReplaySubject.create(bufferSize: replay) }).refCount()
+            case 0: return ShareWhileConnected(source: asObservable())
+            case 1: return ShareReplay1WhileConnected(source: asObservable())
+            default: return multicast(makeSubject: { ReplaySubject.create(bufferSize: replay) }).refCount()
             }
         }
     }
@@ -188,18 +185,18 @@ fileprivate final class ShareReplay1WhileConnectedConnection<Element>
         dispatch(observers, event)
     }
 
-    final private func _synchronized_on(_ event: Event<E>) -> Observers {
+    private final func _synchronized_on(_ event: Event<E>) -> Observers {
         if _disposed {
             return Observers()
         }
 
         switch event {
-        case .next(let element):
+        case let .next(element):
             _element = element
             return _observers
         case .error, .completed:
             let observers = _observers
-            self._synchronized_dispose()
+            _synchronized_dispose()
             return observers
         }
     }
@@ -208,7 +205,7 @@ fileprivate final class ShareReplay1WhileConnectedConnection<Element>
         _subscription.setDisposable(_parent._source.subscribe(self))
     }
 
-    final func _synchronized_subscribe<O : ObserverType>(_ observer: O) -> Disposable where O.E == Element {
+    final func _synchronized_subscribe<O: ObserverType>(_ observer: O) -> Disposable where O.E == Element {
         _lock.lock(); defer { _lock.unlock() }
         if let element = _element {
             observer.on(.next(element))
@@ -219,7 +216,7 @@ fileprivate final class ShareReplay1WhileConnectedConnection<Element>
         return SubscriptionDisposable(owner: self, key: disposeKey)
     }
 
-    final private func _synchronized_dispose() {
+    private final func _synchronized_dispose() {
         _disposed = true
         if _parent._connection === self {
             _parent._connection = nil
@@ -237,9 +234,9 @@ fileprivate final class ShareReplay1WhileConnectedConnection<Element>
     }
 
     @inline(__always)
-    final private func _synchronized_unsubscribe(_ disposeKey: DisposeKey) -> Bool {
+    private final func _synchronized_unsubscribe(_ disposeKey: DisposeKey) -> Bool {
         // if already unsubscribed, just return
-        if self._observers.removeKey(disposeKey) == nil {
+        if _observers.removeKey(disposeKey) == nil {
             return false
         }
 
@@ -259,9 +256,8 @@ fileprivate final class ShareReplay1WhileConnectedConnection<Element>
 }
 
 // optimized version of share replay for most common case
-final fileprivate class ShareReplay1WhileConnected<Element>
+fileprivate final class ShareReplay1WhileConnected<Element>
     : Observable<Element> {
-
     fileprivate typealias Connection = ShareReplay1WhileConnectedConnection<Element>
 
     fileprivate let _source: Observable<Element>
@@ -271,10 +267,10 @@ final fileprivate class ShareReplay1WhileConnected<Element>
     fileprivate var _connection: Connection?
 
     init(source: Observable<Element>) {
-        self._source = source
+        _source = source
     }
 
-    override func subscribe<O : ObserverType>(_ observer: O) -> Disposable where O.E == E {
+    override func subscribe<O: ObserverType>(_ observer: O) -> Disposable where O.E == E {
         _lock.lock()
 
         let connection = _synchronized_subscribe(observer)
@@ -283,7 +279,7 @@ final fileprivate class ShareReplay1WhileConnected<Element>
         let disposable = connection._synchronized_subscribe(observer)
 
         _lock.unlock()
-        
+
         if count == 0 {
             connection.connect()
         }
@@ -292,16 +288,16 @@ final fileprivate class ShareReplay1WhileConnected<Element>
     }
 
     @inline(__always)
-    private func _synchronized_subscribe<O : ObserverType>(_ observer: O) -> Connection where O.E == E {
+    private func _synchronized_subscribe<O: ObserverType>(_: O) -> Connection where O.E == E {
         let connection: Connection
 
         if let existingConnection = _connection {
             connection = existingConnection
-        }
-        else {
+        } else {
             connection = ShareReplay1WhileConnectedConnection<Element>(
                 parent: self,
-                lock: _lock)
+                lock: _lock
+            )
             _connection = connection
         }
 
@@ -340,7 +336,7 @@ fileprivate final class ShareWhileConnectedConnection<Element>
         dispatch(observers, event)
     }
 
-    final private func _synchronized_on(_ event: Event<E>) -> Observers {
+    private final func _synchronized_on(_ event: Event<E>) -> Observers {
         if _disposed {
             return Observers()
         }
@@ -350,7 +346,7 @@ fileprivate final class ShareWhileConnectedConnection<Element>
             return _observers
         case .error, .completed:
             let observers = _observers
-            self._synchronized_dispose()
+            _synchronized_dispose()
             return observers
         }
     }
@@ -359,7 +355,7 @@ fileprivate final class ShareWhileConnectedConnection<Element>
         _subscription.setDisposable(_parent._source.subscribe(self))
     }
 
-    final func _synchronized_subscribe<O : ObserverType>(_ observer: O) -> Disposable where O.E == Element {
+    final func _synchronized_subscribe<O: ObserverType>(_ observer: O) -> Disposable where O.E == Element {
         _lock.lock(); defer { _lock.unlock() }
 
         let disposeKey = _observers.insert(observer.on)
@@ -367,7 +363,7 @@ fileprivate final class ShareWhileConnectedConnection<Element>
         return SubscriptionDisposable(owner: self, key: disposeKey)
     }
 
-    final private func _synchronized_dispose() {
+    private final func _synchronized_dispose() {
         _disposed = true
         if _parent._connection === self {
             _parent._connection = nil
@@ -385,9 +381,9 @@ fileprivate final class ShareWhileConnectedConnection<Element>
     }
 
     @inline(__always)
-    final private func _synchronized_unsubscribe(_ disposeKey: DisposeKey) -> Bool {
+    private final func _synchronized_unsubscribe(_ disposeKey: DisposeKey) -> Bool {
         // if already unsubscribed, just return
-        if self._observers.removeKey(disposeKey) == nil {
+        if _observers.removeKey(disposeKey) == nil {
             return false
         }
 
@@ -400,16 +396,15 @@ fileprivate final class ShareWhileConnectedConnection<Element>
     }
 
     #if TRACE_RESOURCES
-    deinit {
-        _ = Resources.decrementTotal()
-    }
+        deinit {
+            _ = Resources.decrementTotal()
+        }
     #endif
 }
 
 // optimized version of share replay for most common case
-final fileprivate class ShareWhileConnected<Element>
+fileprivate final class ShareWhileConnected<Element>
     : Observable<Element> {
-
     fileprivate typealias Connection = ShareWhileConnectedConnection<Element>
 
     fileprivate let _source: Observable<Element>
@@ -419,10 +414,10 @@ final fileprivate class ShareWhileConnected<Element>
     fileprivate var _connection: Connection?
 
     init(source: Observable<Element>) {
-        self._source = source
+        _source = source
     }
 
-    override func subscribe<O : ObserverType>(_ observer: O) -> Disposable where O.E == E {
+    override func subscribe<O: ObserverType>(_ observer: O) -> Disposable where O.E == E {
         _lock.lock()
 
         let connection = _synchronized_subscribe(observer)
@@ -440,19 +435,19 @@ final fileprivate class ShareWhileConnected<Element>
     }
 
     @inline(__always)
-    private func _synchronized_subscribe<O : ObserverType>(_ observer: O) -> Connection where O.E == E {
+    private func _synchronized_subscribe<O: ObserverType>(_: O) -> Connection where O.E == E {
         let connection: Connection
 
         if let existingConnection = _connection {
             connection = existingConnection
-        }
-        else {
+        } else {
             connection = ShareWhileConnectedConnection<Element>(
                 parent: self,
-                lock: _lock)
+                lock: _lock
+            )
             _connection = connection
         }
-        
+
         return connection
     }
 }

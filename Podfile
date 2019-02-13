@@ -6,6 +6,7 @@ target 'WuLiTT' do
   use_frameworks!
   pod 'SnapKit'
   pod 'RxCocoa'
+  pod 'SwiftFormat/CLI'
   # Pods for WuLiTT
 
   target 'WuLiTTTests' do

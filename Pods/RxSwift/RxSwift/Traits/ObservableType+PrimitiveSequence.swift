@@ -16,7 +16,7 @@ extension ObservableType {
      - returns: An observable sequence that emits a single element or throws an exception if more (or none) of them are emitted.
      */
     public func asSingle() -> Single<E> {
-        return PrimitiveSequence(raw: AsSingle(source: self.asObservable()))
+        return PrimitiveSequence(raw: AsSingle(source: asObservable()))
     }
 
     /**
@@ -28,7 +28,7 @@ extension ObservableType {
      - returns: An observable sequence that emits a single element, completes or throws an exception if more of them are emitted.
      */
     public func asMaybe() -> Maybe<E> {
-        return PrimitiveSequence(raw: AsMaybe(source: self.asObservable()))
+        return PrimitiveSequence(raw: AsMaybe(source: asObservable()))
     }
 }
 
@@ -38,6 +38,6 @@ extension ObservableType where E == Never {
      */
     public func asCompletable()
         -> Completable {
-            return PrimitiveSequence(raw: self.asObservable())
+        return PrimitiveSequence(raw: asObservable())
     }
 }

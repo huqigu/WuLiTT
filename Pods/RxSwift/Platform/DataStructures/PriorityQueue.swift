@@ -53,9 +53,9 @@ struct PriorityQueue<Element> {
         let removingLast = index == _elements.count - 1
         if !removingLast {
             #if swift(>=3.2)
-            _elements.swapAt(index, _elements.count - 1)
+                _elements.swapAt(index, _elements.count - 1)
             #else
-            swap(&_elements[index], &_elements[_elements.count - 1])
+                swap(&_elements[index], &_elements[_elements.count - 1])
             #endif
         }
 
@@ -77,9 +77,9 @@ struct PriorityQueue<Element> {
             let parentIndex = (unbalancedIndex - 1) / 2
             guard _hasHigherPriority(_elements[unbalancedIndex], _elements[parentIndex]) else { break }
             #if swift(>=3.2)
-            _elements.swapAt(unbalancedIndex, parentIndex)
+                _elements.swapAt(unbalancedIndex, parentIndex)
             #else
-            swap(&_elements[unbalancedIndex], &_elements[parentIndex])
+                swap(&_elements[unbalancedIndex], &_elements[parentIndex])
             #endif
             unbalancedIndex = parentIndex
         }
@@ -96,27 +96,27 @@ struct PriorityQueue<Element> {
 
             var highestPriorityIndex = unbalancedIndex
 
-            if leftChildIndex < _elements.count && _hasHigherPriority(_elements[leftChildIndex], _elements[highestPriorityIndex]) {
+            if leftChildIndex < _elements.count, _hasHigherPriority(_elements[leftChildIndex], _elements[highestPriorityIndex]) {
                 highestPriorityIndex = leftChildIndex
             }
 
-            if rightChildIndex < _elements.count && _hasHigherPriority(_elements[rightChildIndex], _elements[highestPriorityIndex]) {
+            if rightChildIndex < _elements.count, _hasHigherPriority(_elements[rightChildIndex], _elements[highestPriorityIndex]) {
                 highestPriorityIndex = rightChildIndex
             }
 
             guard highestPriorityIndex != unbalancedIndex else { break }
 
             #if swift(>=3.2)
-            _elements.swapAt(highestPriorityIndex, unbalancedIndex)
+                _elements.swapAt(highestPriorityIndex, unbalancedIndex)
             #else
-            swap(&_elements[highestPriorityIndex], &_elements[unbalancedIndex])
+                swap(&_elements[highestPriorityIndex], &_elements[unbalancedIndex])
             #endif
             unbalancedIndex = highestPriorityIndex
         }
     }
 }
 
-extension PriorityQueue : CustomDebugStringConvertible {
+extension PriorityQueue: CustomDebugStringConvertible {
     var debugDescription: String {
         return _elements.debugDescription
     }

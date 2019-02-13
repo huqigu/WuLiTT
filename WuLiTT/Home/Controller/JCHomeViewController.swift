@@ -9,17 +9,13 @@
 import UIKit
 
 class JCHomeViewController: JCViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationController?.navigationBar.isHidden = true
-        
+
         let navigationBar = HomeNavigationView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: kNavigationBarHeight))
-        
-        self.view.addSubview(navigationBar)
+
+        view.addSubview(navigationBar)
     }
-
-    
-
 }

@@ -7,7 +7,6 @@
 //
 
 extension ObservableType {
-
     /**
      Bypasses elements in an observable sequence as long as a specified condition is true and then returns the remaining elements.
 
@@ -21,8 +20,7 @@ extension ObservableType {
     }
 }
 
-final fileprivate class SkipWhileSink<O: ObserverType> : Sink<O>, ObserverType {
-
+fileprivate final class SkipWhileSink<O: ObserverType>: Sink<O>, ObserverType {
     typealias Element = O.E
     typealias Parent = SkipWhile<Element>
 
@@ -36,7 +34,7 @@ final fileprivate class SkipWhileSink<O: ObserverType> : Sink<O>, ObserverType {
 
     func on(_ event: Event<Element>) {
         switch event {
-        case .next(let value):
+        case let .next(value):
             if !_running {
                 do {
                     _running = try !_parent._predicate(value)
@@ -57,7 +55,7 @@ final fileprivate class SkipWhileSink<O: ObserverType> : Sink<O>, ObserverType {
     }
 }
 
-final fileprivate class SkipWhile<Element>: Producer<Element> {
+fileprivate final class SkipWhile<Element>: Producer<Element> {
     typealias Predicate = (Element) throws -> Bool
     typealias PredicateWithIndex = (Element, Int) throws -> Bool
 
@@ -69,7 +67,7 @@ final fileprivate class SkipWhile<Element>: Producer<Element> {
         _predicate = predicate
     }
 
-    override func run<O : ObserverType>(_ observer: O, cancel: Cancelable) -> (sink: Disposable, subscription: Disposable) where O.E == Element {
+    override func run<O: ObserverType>(_ observer: O, cancel: Cancelable) -> (sink: Disposable, subscription: Disposable) where O.E == Element {
         let sink = SkipWhileSink(parent: self, observer: observer, cancel: cancel)
         let subscription = _source.subscribe(sink)
         return (sink: sink, subscription: subscription)

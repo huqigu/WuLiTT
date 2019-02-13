@@ -14,32 +14,32 @@ import RxSwift
  * ensures binding is performed on a specific scheduler
 
  `Binder` doesn't retain target and in case target is released, element isn't bound.
- 
+
  By default it binds elements on main scheduler.
  */
 public struct Binder<Value>: ObserverType {
     public typealias E = Value
-    
-    private let _binding: (Event<Value>) -> ()
+
+    private let _binding: (Event<Value>) -> Void
 
     /// Initializes `Binder`
     ///
     /// - parameter target: Target object.
     /// - parameter scheduler: Scheduler used to bind the events.
     /// - parameter binding: Binding logic.
-    public init<Target: AnyObject>(_ target: Target, scheduler: ImmediateSchedulerType = MainScheduler(), binding: @escaping (Target, Value) -> ()) {
+    public init<Target: AnyObject>(_ target: Target, scheduler: ImmediateSchedulerType = MainScheduler(), binding: @escaping (Target, Value) -> Void) {
         weak var weakTarget = target
 
         _binding = { event in
             switch event {
-            case .next(let element):
+            case let .next(element):
                 _ = scheduler.schedule(element) { element in
                     if let target = weakTarget {
                         binding(target, element)
                     }
                     return Disposables.create()
                 }
-            case .error(let error):
+            case let .error(error):
                 bindingError(error)
             case .completed:
                 break

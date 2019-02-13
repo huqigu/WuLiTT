@@ -7,7 +7,6 @@
 //
 
 extension ObservableType {
-
     /**
      Ignores elements from an observable sequence which are followed by another element within a specified relative time duration, using the specified scheduler to run throttling timers.
 
@@ -19,11 +18,11 @@ extension ObservableType {
      */
     public func debounce(_ dueTime: RxTimeInterval, scheduler: SchedulerType)
         -> Observable<E> {
-            return Debounce(source: self.asObservable(), dueTime: dueTime, scheduler: scheduler)
+        return Debounce(source: asObservable(), dueTime: dueTime, scheduler: scheduler)
     }
 }
 
-final fileprivate class DebounceSink<O: ObserverType>
+fileprivate final class DebounceSink<O: ObserverType>
     : Sink<O>
     , ObserverType
     , LockOwnerType
@@ -37,7 +36,7 @@ final fileprivate class DebounceSink<O: ObserverType>
 
     // state
     private var _id = 0 as UInt64
-    private var _value: Element? = nil
+    private var _value: Element?
 
     let cancellable = SerialDisposable()
 
@@ -59,18 +58,17 @@ final fileprivate class DebounceSink<O: ObserverType>
 
     func _synchronized_on(_ event: Event<Element>) {
         switch event {
-        case .next(let element):
+        case let .next(element):
             _id = _id &+ 1
             let currentId = _id
             _value = element
-
 
             let scheduler = _parent._scheduler
             let dueTime = _parent._dueTime
 
             let d = SingleAssignmentDisposable()
-            self.cancellable.disposable = d
-            d.setDisposable(scheduler.scheduleRelative(currentId, dueTime: dueTime, action: self.propagate))
+            cancellable.disposable = d
+            d.setDisposable(scheduler.scheduleRelative(currentId, dueTime: dueTime, action: propagate))
         case .error:
             _value = nil
             forwardOn(event)
@@ -98,8 +96,7 @@ final fileprivate class DebounceSink<O: ObserverType>
     }
 }
 
-final fileprivate class Debounce<Element> : Producer<Element> {
-
+fileprivate final class Debounce<Element>: Producer<Element> {
     fileprivate let _source: Observable<Element>
     fileprivate let _dueTime: RxTimeInterval
     fileprivate let _scheduler: SchedulerType
@@ -115,5 +112,4 @@ final fileprivate class Debounce<Element> : Producer<Element> {
         let subscription = sink.run()
         return (sink: sink, subscription: subscription)
     }
-    
 }

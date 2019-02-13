@@ -9,17 +9,16 @@
 import Dispatch
 
 /**
-Abstracts work that needs to be performed on `DispatchQueue.main`. In case `schedule` methods are called from `DispatchQueue.main`, it will perform action immediately without scheduling.
+ Abstracts work that needs to be performed on `DispatchQueue.main`. In case `schedule` methods are called from `DispatchQueue.main`, it will perform action immediately without scheduling.
 
-This scheduler is usually used to perform UI work.
+ This scheduler is usually used to perform UI work.
 
-Main scheduler is a specialization of `SerialDispatchQueueScheduler`.
+ Main scheduler is a specialization of `SerialDispatchQueueScheduler`.
 
-This scheduler is optimized for `observeOn` operator. To ensure observable sequence is subscribed on main thread using `subscribeOn`
-operator please use `ConcurrentMainScheduler` because it is more optimized for that purpose.
-*/
-public final class MainScheduler : SerialDispatchQueueScheduler {
-
+ This scheduler is optimized for `observeOn` operator. To ensure observable sequence is subscribed on main thread using `subscribeOn`
+ operator please use `ConcurrentMainScheduler` because it is more optimized for that purpose.
+ */
+public final class MainScheduler: SerialDispatchQueueScheduler {
     private let _mainQueue: DispatchQueue
 
     var numberEnqueued = AtomicInt(0)
@@ -47,7 +46,7 @@ public final class MainScheduler : SerialDispatchQueueScheduler {
     override func scheduleInternal<StateType>(_ state: StateType, action: @escaping (StateType) -> Disposable) -> Disposable {
         let previousNumberEnqueued = numberEnqueued.increment()
 
-        if DispatchQueue.isMain && previousNumberEnqueued == 0 {
+        if DispatchQueue.isMain, previousNumberEnqueued == 0 {
             let disposable = action(state)
             numberEnqueued.decrement()
             return disposable

@@ -7,7 +7,6 @@
 //
 
 extension ObservableType {
-
     /**
      Returns a non-terminating observable sequence, which can be used to denote an infinite duration.
 
@@ -20,8 +19,8 @@ extension ObservableType {
     }
 }
 
-final fileprivate class NeverProducer<Element> : Producer<Element> {
-    override func subscribe<O : ObserverType>(_ observer: O) -> Disposable where O.E == Element {
+fileprivate final class NeverProducer<Element>: Producer<Element> {
+    override func subscribe<O: ObserverType>(_: O) -> Disposable where O.E == Element {
         return Disposables.create()
     }
 }

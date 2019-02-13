@@ -9,9 +9,9 @@
 extension Observable {
     /**
      Converts a optional to an observable sequence.
-     
+
      - seealso: [from operator on reactivex.io](http://reactivex.io/documentation/operators/from.html)
-     
+
      - parameter optional: Optional element in the resulting observable sequence.
      - returns: An observable sequence containing the wrapped value or not from given optional.
      */
@@ -38,7 +38,7 @@ extension Observable {
 extension ObservableType {
     /**
 
-    Projects each element of an observable sequence into a new form by incorporating the element's index.
+     Projects each element of an observable sequence into a new form by incorporating the element's index.
 
      - seealso: [map operator on reactivex.io](http://reactivex.io/documentation/operators/map.html)
 
@@ -50,7 +50,6 @@ extension ObservableType {
         -> Observable<R> {
         return enumerated().map { try selector($0.element, $0.index) }
     }
-
 
     /**
 
@@ -82,7 +81,6 @@ extension ObservableType {
         return enumerated().skipWhile { try predicate($0.element, $0.index) }.map { $0.element }
     }
 
-
     /**
 
      Returns elements from an observable sequence as long as a specified condition is true.
@@ -113,9 +111,7 @@ extension Disposable {
     }
 }
 
-
 extension ObservableType {
-
     /**
      Returns an observable sequence that shares a single subscription to the underlying sequence, and immediately upon subscription replays latest element in buffer.
 
@@ -132,9 +128,7 @@ extension ObservableType {
     }
 }
 
-
 extension ObservableType {
-
     /**
      Returns an observable sequence that shares a single subscription to the underlying sequence, and immediately upon subscription replays maximum number of elements in buffer.
 
@@ -148,7 +142,7 @@ extension ObservableType {
     @available(*, deprecated, message: "Suggested replacement is `share(replay: 1)`. In case old 3.x behavior of `shareReplay` is required please use `share(replay: 1, scope: .forever)` instead.", renamed: "share(replay:)")
     public func shareReplay(_ bufferSize: Int)
         -> Observable<E> {
-        return self.share(replay: bufferSize, scope: .forever)
+        return share(replay: bufferSize, scope: .forever)
     }
 }
 
@@ -168,7 +162,6 @@ extension ObservableType {
 ///
 /// Once plans are finalized, official availability attribute will be added in one of upcoming versions.
 public final class Variable<Element> {
-
     public typealias E = Element
 
     private let _subject: BehaviorSubject<Element>
@@ -179,7 +172,7 @@ public final class Variable<Element> {
     private var _value: E
 
     #if DEBUG
-    fileprivate let _synchronizationTracker = SynchronizationTracker()
+        fileprivate let _synchronizationTracker = SynchronizationTracker()
     #endif
 
     /// Gets or sets current value of variable.

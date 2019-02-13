@@ -5,10 +5,12 @@ PODS:
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
   - SnapKit (4.2.0)
+  - SwiftFormat/CLI (0.37.2)
 
 DEPENDENCIES:
   - RxCocoa
   - SnapKit
+  - SwiftFormat/CLI
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -16,13 +18,15 @@ SPEC REPOS:
     - RxCocoa
     - RxSwift
     - SnapKit
+    - SwiftFormat
 
 SPEC CHECKSUMS:
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftFormat: abbfb26dde4c6d683923cde153c88e10da9d7881
 
-PODFILE CHECKSUM: 2af78ae5b490013de1b1a8b94fa207bc22daaa6d
+PODFILE CHECKSUM: e3e77cb5546760941c297611be35d5764129d3e9
 
 COCOAPODS: 1.5.3
