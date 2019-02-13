@@ -15,7 +15,7 @@ class JCViewController: UIViewController {
 
         navigationController?.navigationBar.isHidden = false
         
-        // test spacecommander ----------
+        //   test spacecommander ----------
         
 //        hidesBottomBarWhenPushed = true
         
