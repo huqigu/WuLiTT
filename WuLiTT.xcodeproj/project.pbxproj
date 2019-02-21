@@ -23,6 +23,10 @@
 		FDA568512213F654008F7697 /* JCTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA568502213F654008F7697 /* JCTabBarController.swift */; };
 		FDA568532213F718008F7697 /* JCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA568522213F718008F7697 /* JCNavigationController.swift */; };
 		FDA568552213F737008F7697 /* JCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA568542213F737008F7697 /* JCViewController.swift */; };
+		FDA5685A22144706008F7697 /* JCMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA5685922144706008F7697 /* JCMomentsViewController.swift */; };
+		FDA5685C22144716008F7697 /* JCTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA5685B22144716008F7697 /* JCTaskViewController.swift */; };
+		FDA5685E22144723008F7697 /* JCMineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA5685D22144723008F7697 /* JCMineViewController.swift */; };
+		FDA5686122144A86008F7697 /* JCEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA5686022144A86008F7697 /* JCEndPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,10 @@
 		FDA568502213F654008F7697 /* JCTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCTabBarController.swift; sourceTree = "<group>"; };
 		FDA568522213F718008F7697 /* JCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCNavigationController.swift; sourceTree = "<group>"; };
 		FDA568542213F737008F7697 /* JCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCViewController.swift; sourceTree = "<group>"; };
+		FDA5685922144706008F7697 /* JCMomentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCMomentsViewController.swift; sourceTree = "<group>"; };
+		FDA5685B22144716008F7697 /* JCTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCTaskViewController.swift; sourceTree = "<group>"; };
+		FDA5685D22144723008F7697 /* JCMineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCMineViewController.swift; sourceTree = "<group>"; };
+		FDA5686022144A86008F7697 /* JCEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCEndPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +253,7 @@
 		FD3EFCED21DD200C00D87A3E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FDA5685922144706008F7697 /* JCMomentsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -284,6 +293,7 @@
 		FD3EFCF221DD201100D87A3E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FDA5685B22144716008F7697 /* JCTaskViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -323,6 +333,7 @@
 		FD3EFCF721DD201700D87A3E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FDA5685D22144723008F7697 /* JCMineViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -344,6 +355,7 @@
 		FD3EFCFA21DD201B00D87A3E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				FDA5685F22144A6D008F7697 /* JCEndPoint */,
 				FD3EFCFB21DD201B00D87A3E /* Common.swift */,
 			);
 			path = Tools;
@@ -381,6 +393,14 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FDA5685F22144A6D008F7697 /* JCEndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				FDA5686022144A86008F7697 /* JCEndPoint.swift */,
+			);
+			path = JCEndPoint;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -558,17 +578,21 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WuLiTT/Pods-WuLiTT-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -608,7 +632,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${SRCROOT}/SwiftFormat.sh\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n ${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat .\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -617,6 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDA5685C22144716008F7697 /* JCTaskViewController.swift in Sources */,
 				FDA568532213F718008F7697 /* JCNavigationController.swift in Sources */,
 				FD3EFCB721DD1F8200D87A3E /* ViewController.swift in Sources */,
 				FDA568552213F737008F7697 /* JCViewController.swift in Sources */,
@@ -625,6 +650,9 @@
 				FD3EFCB521DD1F8200D87A3E /* AppDelegate.swift in Sources */,
 				FD3EFCFC21DD201C00D87A3E /* Common.swift in Sources */,
 				FD3EFCEA21DD200300D87A3E /* HomeNavigationView.swift in Sources */,
+				FDA5686122144A86008F7697 /* JCEndPoint.swift in Sources */,
+				FDA5685E22144723008F7697 /* JCMineViewController.swift in Sources */,
+				FDA5685A22144706008F7697 /* JCMomentsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

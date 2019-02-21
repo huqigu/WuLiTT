@@ -27,11 +27,11 @@ extension JCTabBarController {
     func addChildViewControllers() {
         let vc1 = JCHomeViewController()
 
-        let vc2 = JCViewController()
+        let vc2 = JCMomentsViewController()
 
-        let vc3 = JCViewController()
+        let vc3 = JCTaskViewController()
 
-        let vc4 = JCViewController()
+        let vc4 = JCMineViewController()
 
         addChildViewController(createChildViewController(vc: vc1, title: "首页", imageName: "ic_tab_home_29x29_", selectedImageName: "ic_tab_chosenhome_29x29_"))
         addChildViewController(createChildViewController(vc: vc2, title: "喵圈", imageName: "ic_tab_play_29x29_", selectedImageName: "ic_tab_chosenplay_29x29_"))

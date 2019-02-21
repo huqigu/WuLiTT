@@ -38,6 +38,8 @@ class CommonTool {
 let kScreenW = UIScreen.main.bounds.width
 let kScreenH = UIScreen.main.bounds.height
 
+let kHostUrl = "https://api.5wuli.com/v2/"
+
 let kNavigationBarHeight = CommonTool.navigationBarHeight
 let kBottomSafeHeight = CommonTool.bottomSafeHeight
 

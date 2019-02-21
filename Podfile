@@ -7,6 +7,8 @@ target 'WuLiTT' do
   pod 'SnapKit'
   pod 'RxCocoa'
   pod 'SwiftFormat/CLI'
+  pod 'Alamofire'
+  pod 'SwiftyJSON', '~> 4.0'
   # Pods for WuLiTT
 
   target 'WuLiTTTests' do
