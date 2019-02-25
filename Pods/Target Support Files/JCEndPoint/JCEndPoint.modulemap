@@ -1,0 +1,6 @@
+framework module JCEndPoint {
+  umbrella header "JCEndPoint-umbrella.h"
+
+  export *
+  module * { export * }
+}

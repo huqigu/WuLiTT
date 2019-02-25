@@ -1,5 +1,12 @@
 PODS:
   - Alamofire (4.8.1)
+  - JCEndPoint (0.1.0):
+    - Alamofire
+    - NVActivityIndicatorView
+    - SwiftyJSON (~> 4.0)
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
@@ -10,15 +17,15 @@ PODS:
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
-  - Alamofire
+  - JCEndPoint (from `https://github.com/huqigu/JCEndPoint.git`)
   - RxCocoa
   - SnapKit
   - SwiftFormat/CLI
-  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - NVActivityIndicatorView
     - RxAtomic
     - RxCocoa
     - RxSwift
@@ -26,8 +33,19 @@ SPEC REPOS:
     - SwiftFormat
     - SwiftyJSON
 
+EXTERNAL SOURCES:
+  JCEndPoint:
+    :git: https://github.com/huqigu/JCEndPoint.git
+
+CHECKOUT OPTIONS:
+  JCEndPoint:
+    :commit: 59d6ce29005af231a158c285c4f37ed3f0d4802d
+    :git: https://github.com/huqigu/JCEndPoint.git
+
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  JCEndPoint: e7483e355e186c9c25b7130dbcb74d1816692760
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
@@ -35,6 +53,6 @@ SPEC CHECKSUMS:
   SwiftFormat: abbfb26dde4c6d683923cde153c88e10da9d7881
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 0b5f0473c43b0ce80d41d35de41a4fbb1fa1c695
+PODFILE CHECKSUM: 6b84cc39f70babe7ec147f31d027988142741925
 
 COCOAPODS: 1.5.3

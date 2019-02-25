@@ -7,8 +7,9 @@ target 'WuLiTT' do
   pod 'SnapKit'
   pod 'RxCocoa'
   pod 'SwiftFormat/CLI'
-  pod 'Alamofire'
-  pod 'SwiftyJSON', '~> 4.0'
+#  pod 'Alamofire'
+#  pod 'SwiftyJSON', '~> 4.0'
+  pod 'JCEndPoint',:git => "https://github.com/huqigu/JCEndPoint.git"
   # Pods for WuLiTT
 
   target 'WuLiTTTests' do

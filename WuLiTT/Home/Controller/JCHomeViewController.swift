@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import JCEndPoint
 import SwiftyJSON
 import UIKit
 
@@ -22,10 +23,7 @@ class JCHomeViewController: JCViewController {
 
         let parameters: Dictionary = ["channelId": "30", "cursor": "\(getCurrentTimes())", "slipType": "UP"]
 
-        JCEndPoint.sharedInstance.get("message/list", parameters: parameters) {
-            print($0)
-            print($1)
-            print($2)
+        JCEndPoint().get("message/list", parameters: parameters, needLoading: true, logEnable: true) { _, _, _ in
         }
     }
 

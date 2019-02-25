@@ -6,8 +6,8 @@
 //  Copyright © 2019 yellow. All rights reserved.
 //
 
+import JCEndPoint
 import UIKit
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabbarController = JCTabBarController()
 
         window?.rootViewController = tabbarController
+
+        JCEndPoint.sharedInstance.setBaseUrl(baseUrl: kHostUrl)
 
         return true
     }

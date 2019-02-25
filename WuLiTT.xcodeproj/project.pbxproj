@@ -26,7 +26,6 @@
 		FDA5685A22144706008F7697 /* JCMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA5685922144706008F7697 /* JCMomentsViewController.swift */; };
 		FDA5685C22144716008F7697 /* JCTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA5685B22144716008F7697 /* JCTaskViewController.swift */; };
 		FDA5685E22144723008F7697 /* JCMineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA5685D22144723008F7697 /* JCMineViewController.swift */; };
-		FDA5686122144A86008F7697 /* JCEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA5686022144A86008F7697 /* JCEndPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +77,6 @@
 		FDA5685922144706008F7697 /* JCMomentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCMomentsViewController.swift; sourceTree = "<group>"; };
 		FDA5685B22144716008F7697 /* JCTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCTaskViewController.swift; sourceTree = "<group>"; };
 		FDA5685D22144723008F7697 /* JCMineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCMineViewController.swift; sourceTree = "<group>"; };
-		FDA5686022144A86008F7697 /* JCEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCEndPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,7 +353,6 @@
 		FD3EFCFA21DD201B00D87A3E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				FDA5685F22144A6D008F7697 /* JCEndPoint */,
 				FD3EFCFB21DD201B00D87A3E /* Common.swift */,
 			);
 			path = Tools;
@@ -393,14 +390,6 @@
 			children = (
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		FDA5685F22144A6D008F7697 /* JCEndPoint */ = {
-			isa = PBXGroup;
-			children = (
-				FDA5686022144A86008F7697 /* JCEndPoint.swift */,
-			);
-			path = JCEndPoint;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -579,6 +568,8 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WuLiTT/Pods-WuLiTT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/JCEndPoint/JCEndPoint.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -588,6 +579,8 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JCEndPoint.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -650,7 +643,6 @@
 				FD3EFCB521DD1F8200D87A3E /* AppDelegate.swift in Sources */,
 				FD3EFCFC21DD201C00D87A3E /* Common.swift in Sources */,
 				FD3EFCEA21DD200300D87A3E /* HomeNavigationView.swift in Sources */,
-				FDA5686122144A86008F7697 /* JCEndPoint.swift in Sources */,
 				FDA5685E22144723008F7697 /* JCMineViewController.swift in Sources */,
 				FDA5685A22144706008F7697 /* JCMomentsViewController.swift in Sources */,
 			);

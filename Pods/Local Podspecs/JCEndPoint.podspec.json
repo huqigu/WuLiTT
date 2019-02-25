@@ -1,0 +1,33 @@
+{
+  "name": "JCEndPoint",
+  "version": "0.1.0",
+  "summary": "A short description of JCEndPoint.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/huqigu/JCEndPoint",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "huqigu": "huqigu@163.com"
+  },
+  "source": {
+    "git": "https://github.com/huqigu/JCEndPoint.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "JCEndPoint/Classes/**/*",
+  "dependencies": {
+    "Alamofire": [
+
+    ],
+    "SwiftyJSON": [
+      "~> 4.0"
+    ],
+    "NVActivityIndicatorView": [
+
+    ]
+  }
+}
