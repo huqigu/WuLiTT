@@ -35,14 +35,4 @@ class CommonTool {
     }
 }
 
-let kScreenW = UIScreen.main.bounds.width
-let kScreenH = UIScreen.main.bounds.height
-
-let kHostUrl = "https://api.5wuli.com/v2/"
-
-let kNavigationBarHeight = CommonTool.navigationBarHeight
-let kBottomSafeHeight = CommonTool.bottomSafeHeight
-
-let yellowColor = UIColor(red: 254.0 / 255.0, green: 213.0 / 255.0, blue: 72.0 / 255.0, alpha: 1.0)
-
 let disposeBag = DisposeBag()

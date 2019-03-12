@@ -9,7 +9,12 @@ target 'WuLiTT' do
   pod 'SwiftFormat/CLI'
 #  pod 'Alamofire'
 #  pod 'SwiftyJSON', '~> 4.0'
-  pod 'JCEndPoint',:git => "https://github.com/huqigu/JCEndPoint.git"
+#pod 'JCEndPoint',:git => "https://github.com/huqigu/JCEndPoint.git"
+  pod 'RxSwift'
+  pod 'Moya/RxSwift'
+  pod 'ObjectMapper'
+  pod 'NVActivityIndicatorView'
+  pod 'SVProgressHUD', '~> 2.1.2'
   # Pods for WuLiTT
 
   target 'WuLiTTTests' do

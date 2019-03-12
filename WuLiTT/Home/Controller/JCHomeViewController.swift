@@ -6,9 +6,8 @@
 //  Copyright © 2019 yellow. All rights reserved.
 //
 
-import Alamofire
-import JCEndPoint
-import SwiftyJSON
+import Moya
+import RxSwift
 import UIKit
 
 class JCHomeViewController: JCViewController {
@@ -21,9 +20,11 @@ class JCHomeViewController: JCViewController {
 
         view.addSubview(navigationBar)
 
-        let parameters: Dictionary = ["channelId": "30", "cursor": "\(getCurrentTimes())", "slipType": "UP"]
+//        let parameters: Dictionary = ["channelId": "30", "cursor": "\(getCurrentTimes())", "slipType": "UP"]
 
-        JCEndPoint().get("message/list", parameters: parameters, needLoading: true, logEnable: true) { _, _, _ in
+        MoyaProvider<APIManager>(plugins: [JCRequestPlugin(), netWorkActivityPlugin]).request(.getHomeList(channelId: 30, timestamp: getCurrentTimes(), slipType: "UP")) { result in
+
+            print("moyaRequest == " + result.result.debugDescription)
         }
     }
 
@@ -35,7 +36,6 @@ class JCHomeViewController: JCViewController {
         // 创建一个日期格式器
         let dformatter = DateFormatter()
         dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
-        print("当前日期时间：\(dformatter.string(from: now as Date))")
 
         // 当前时间的时间戳
         let timeInterval: TimeInterval = now.timeIntervalSince1970

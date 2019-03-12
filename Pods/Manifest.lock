@@ -1,58 +1,62 @@
 PODS:
   - Alamofire (4.8.1)
-  - JCEndPoint (0.1.0):
-    - Alamofire
-    - NVActivityIndicatorView
-    - SwiftyJSON (~> 4.0)
+  - Moya/Core (12.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.0)
+  - Moya/RxSwift (12.0.1):
+    - Moya/Core
+    - RxSwift (~> 4.0)
   - NVActivityIndicatorView (4.6.1):
     - NVActivityIndicatorView/Presenter (= 4.6.1)
   - NVActivityIndicatorView/Presenter (4.6.1)
+  - ObjectMapper (3.4.2)
+  - Result (4.1.0)
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
   - SnapKit (4.2.0)
+  - SVProgressHUD (2.1.2)
   - SwiftFormat/CLI (0.37.2)
-  - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
-  - JCEndPoint (from `https://github.com/huqigu/JCEndPoint.git`)
+  - Moya/RxSwift
+  - NVActivityIndicatorView
+  - ObjectMapper
   - RxCocoa
+  - RxSwift
   - SnapKit
+  - SVProgressHUD (~> 2.1.2)
   - SwiftFormat/CLI
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Moya
     - NVActivityIndicatorView
+    - ObjectMapper
+    - Result
     - RxAtomic
     - RxCocoa
     - RxSwift
     - SnapKit
+    - SVProgressHUD
     - SwiftFormat
-    - SwiftyJSON
-
-EXTERNAL SOURCES:
-  JCEndPoint:
-    :git: https://github.com/huqigu/JCEndPoint.git
-
-CHECKOUT OPTIONS:
-  JCEndPoint:
-    :commit: 59d6ce29005af231a158c285c4f37ed3f0d4802d
-    :git: https://github.com/huqigu/JCEndPoint.git
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  JCEndPoint: e7483e355e186c9c25b7130dbcb74d1816692760
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   SwiftFormat: abbfb26dde4c6d683923cde153c88e10da9d7881
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 6b84cc39f70babe7ec147f31d027988142741925
+PODFILE CHECKSUM: 8f276ea8d23371d3775bbf3ffea498e62b677d95
 
 COCOAPODS: 1.5.3

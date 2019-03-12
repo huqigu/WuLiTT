@@ -64,7 +64,7 @@ extension HomeNavigationView {
             make.bottom.equalTo(newsBtn.snp.bottom).offset(3)
             make.centerX.equalTo(newsBtn.snp.centerX)
         }
-        animationView.backgroundColor = yellowColor
+        animationView.backgroundColor = Configs.App.yellowColor
 
         // 3.底部分割线
         let line = UIView()

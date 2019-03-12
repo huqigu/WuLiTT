@@ -20,6 +20,10 @@
 		FD3EFCE921DD200300D87A3E /* JCHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3EFCE521DD200300D87A3E /* JCHomeViewController.swift */; };
 		FD3EFCEA21DD200300D87A3E /* HomeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3EFCE821DD200300D87A3E /* HomeNavigationView.swift */; };
 		FD3EFCFC21DD201C00D87A3E /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3EFCFB21DD201B00D87A3E /* Common.swift */; };
+		FD53A5F12237F747008AD447 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD53A5F02237F747008AD447 /* Configs.swift */; };
+		FD53A5F62237F8FC008AD447 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD53A5F52237F8FC008AD447 /* APIManager.swift */; };
+		FD53A5F82237FC3B008AD447 /* JCRequestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD53A5F72237FC3B008AD447 /* JCRequestPlugin.swift */; };
+		FD53A5FA2237FF7F008AD447 /* JCProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD53A5F92237FF7F008AD447 /* JCProgressHud.swift */; };
 		FDA568512213F654008F7697 /* JCTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA568502213F654008F7697 /* JCTabBarController.swift */; };
 		FDA568532213F718008F7697 /* JCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA568522213F718008F7697 /* JCNavigationController.swift */; };
 		FDA568552213F737008F7697 /* JCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA568542213F737008F7697 /* JCViewController.swift */; };
@@ -71,6 +75,10 @@
 		FD3EFCE521DD200300D87A3E /* JCHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JCHomeViewController.swift; sourceTree = "<group>"; };
 		FD3EFCE821DD200300D87A3E /* HomeNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNavigationView.swift; sourceTree = "<group>"; };
 		FD3EFCFB21DD201B00D87A3E /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		FD53A5F02237F747008AD447 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
+		FD53A5F52237F8FC008AD447 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		FD53A5F72237FC3B008AD447 /* JCRequestPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCRequestPlugin.swift; sourceTree = "<group>"; };
+		FD53A5F92237FF7F008AD447 /* JCProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCProgressHud.swift; sourceTree = "<group>"; };
 		FDA568502213F654008F7697 /* JCTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCTabBarController.swift; sourceTree = "<group>"; };
 		FDA568522213F718008F7697 /* JCNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCNavigationController.swift; sourceTree = "<group>"; };
 		FDA568542213F737008F7697 /* JCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +169,7 @@
 				FD3EFCF021DD201100D87A3E /* Task */,
 				FD3EFCF521DD201700D87A3E /* Mine */,
 				FD3EFCFA21DD201B00D87A3E /* Tools */,
+				FD53A5F22237F8BC008AD447 /* Networking */,
 				FD3EFCB421DD1F8200D87A3E /* AppDelegate.swift */,
 				FD3EFCB621DD1F8200D87A3E /* ViewController.swift */,
 				FD3EFCB821DD1F8200D87A3E /* Main.storyboard */,
@@ -354,8 +363,19 @@
 			isa = PBXGroup;
 			children = (
 				FD3EFCFB21DD201B00D87A3E /* Common.swift */,
+				FD53A5F02237F747008AD447 /* Configs.swift */,
+				FD53A5F92237FF7F008AD447 /* JCProgressHud.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		FD53A5F22237F8BC008AD447 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				FD53A5F52237F8FC008AD447 /* APIManager.swift */,
+				FD53A5F72237FC3B008AD447 /* JCRequestPlugin.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		FDA5684A2213F436008F7697 /* Base */ = {
@@ -568,24 +588,28 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WuLiTT/Pods-WuLiTT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/JCEndPoint/JCEndPoint.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JCEndPoint.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -639,10 +663,14 @@
 				FD3EFCB721DD1F8200D87A3E /* ViewController.swift in Sources */,
 				FDA568552213F737008F7697 /* JCViewController.swift in Sources */,
 				FD3EFCE921DD200300D87A3E /* JCHomeViewController.swift in Sources */,
+				FD53A5F12237F747008AD447 /* Configs.swift in Sources */,
 				FDA568512213F654008F7697 /* JCTabBarController.swift in Sources */,
+				FD53A5F82237FC3B008AD447 /* JCRequestPlugin.swift in Sources */,
 				FD3EFCB521DD1F8200D87A3E /* AppDelegate.swift in Sources */,
 				FD3EFCFC21DD201C00D87A3E /* Common.swift in Sources */,
+				FD53A5FA2237FF7F008AD447 /* JCProgressHud.swift in Sources */,
 				FD3EFCEA21DD200300D87A3E /* HomeNavigationView.swift in Sources */,
+				FD53A5F62237F8FC008AD447 /* APIManager.swift in Sources */,
 				FDA5685E22144723008F7697 /* JCMineViewController.swift in Sources */,
 				FDA5685A22144706008F7697 /* JCMomentsViewController.swift in Sources */,
 			);

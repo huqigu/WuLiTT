@@ -17,7 +17,7 @@ class JCTabBarController: UITabBarController {
 
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.gray], for: .normal)
 
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: yellowColor], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Configs.App.yellowColor], for: .selected)
     }
 }
 
