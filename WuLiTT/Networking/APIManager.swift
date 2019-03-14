@@ -8,6 +8,17 @@
 
 import Foundation
 import Moya
+import Moya_ObjectMapper
+import ObjectMapper
+import RxSwift
+
+private func endpointMapping<Target: TargetType>(target: Target) -> Endpoint {
+    print(" 🚀 URL：\(target.baseURL)\(target.path) \n 🚀 Method：\(target.method)\n 🚀 Parameters：\(String(describing: target.task)) ")
+
+    return MoyaProvider.defaultEndpointMapping(for: target)
+}
+
+let provider = MoyaProvider<APIManager>(endpointClosure: endpointMapping, plugins: [JCRequestPlugin(), netWorkActivityPlugin])
 
 enum APIManager {
     case getHomeList(channelId: Int, timestamp: Int, slipType: String) // 获取首页列表
@@ -45,24 +56,17 @@ extension APIManager: TargetType {
         return nil
     }
 
-    var parameters: [String: Any]? {
-        var params: [String: Any] = [:]
-        switch self {
-        case let .getHomeList(channelId, timestamp, slipType):
-            params["channelId"] = channelId
-            params["cursor"] = timestamp
-            params["slipType"] = slipType
-        default: break
-        }
-        return params
-    }
-
     public var parameterEncoding: ParameterEncoding {
         return URLEncoding.default
     }
 
     public var task: Task {
-        return .requestPlain
+        switch self {
+        case let .getHomeList(channelId, timestamp, slipType):
+            return .requestParameters(parameters: ["channelId": channelId, "cursor": timestamp, "slipType": slipType], encoding: URLEncoding.default)
+        default:
+            return .requestPlain
+        }
     }
 
     var sampleData: Data {

@@ -10,6 +10,10 @@
 		D2EA2F645E85557E884F88AE /* Pods_WuLiTTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D438D2DCE5EE62F984B8B2B9 /* Pods_WuLiTTTests.framework */; };
 		E74F9142BBE138908FA7ED1C /* Pods_WuLiTTUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C95F57E2BAE11EA6064CBDF /* Pods_WuLiTTUITests.framework */; };
 		E99987C8CDD19CEA031A0098 /* Pods_WuLiTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C1B6D32E4D3C14E6477592 /* Pods_WuLiTT.framework */; };
+		FD01A3F4223A2B31000550F0 /* JCProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD01A3F3223A2B31000550F0 /* JCProvider.swift */; };
+		FD01A3F6223A8E80000550F0 /* JCNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD01A3F5223A8E7F000550F0 /* JCNewsModel.swift */; };
+		FD01A3F8223A8EDD000550F0 /* JCNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD01A3F7223A8EDD000550F0 /* JCNewsViewModel.swift */; };
+		FD01A3FA223A906D000550F0 /* JCNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD01A3F9223A906D000550F0 /* JCNewsCell.swift */; };
 		FD3EFCB521DD1F8200D87A3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3EFCB421DD1F8200D87A3E /* AppDelegate.swift */; };
 		FD3EFCB721DD1F8200D87A3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3EFCB621DD1F8200D87A3E /* ViewController.swift */; };
 		FD3EFCBA21DD1F8200D87A3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3EFCB821DD1F8200D87A3E /* Main.storyboard */; };
@@ -59,6 +63,10 @@
 		C8197B54090DFC4C763511A5 /* Pods-WuLiTTUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WuLiTTUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WuLiTTUITests/Pods-WuLiTTUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D438D2DCE5EE62F984B8B2B9 /* Pods_WuLiTTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WuLiTTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5A444685B4CA9046B26CD9D /* Pods-WuLiTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WuLiTT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WuLiTT/Pods-WuLiTT.debug.xcconfig"; sourceTree = "<group>"; };
+		FD01A3F3223A2B31000550F0 /* JCProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCProvider.swift; sourceTree = "<group>"; };
+		FD01A3F5223A8E7F000550F0 /* JCNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCNewsModel.swift; sourceTree = "<group>"; };
+		FD01A3F7223A8EDD000550F0 /* JCNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCNewsViewModel.swift; sourceTree = "<group>"; };
+		FD01A3F9223A906D000550F0 /* JCNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCNewsCell.swift; sourceTree = "<group>"; };
 		FD3EFCB121DD1F8200D87A3E /* WuLiTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WuLiTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD3EFCB421DD1F8200D87A3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD3EFCB621DD1F8200D87A3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +220,7 @@
 		FD3EFCE321DD200300D87A3E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				FD01A3F7223A8EDD000550F0 /* JCNewsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -227,6 +236,7 @@
 		FD3EFCE621DD200300D87A3E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FD01A3F5223A8E7F000550F0 /* JCNewsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -235,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				FD3EFCE821DD200300D87A3E /* HomeNavigationView.swift */,
+				FD01A3F9223A906D000550F0 /* JCNewsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -373,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				FD53A5F52237F8FC008AD447 /* APIManager.swift */,
+				FD01A3F3223A2B31000550F0 /* JCProvider.swift */,
 				FD53A5F72237FC3B008AD447 /* JCRequestPlugin.swift */,
 			);
 			path = Networking;
@@ -588,7 +600,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WuLiTT/Pods-WuLiTT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper/Moya_ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -601,7 +616,10 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -662,14 +680,18 @@
 				FDA568532213F718008F7697 /* JCNavigationController.swift in Sources */,
 				FD3EFCB721DD1F8200D87A3E /* ViewController.swift in Sources */,
 				FDA568552213F737008F7697 /* JCViewController.swift in Sources */,
+				FD01A3FA223A906D000550F0 /* JCNewsCell.swift in Sources */,
 				FD3EFCE921DD200300D87A3E /* JCHomeViewController.swift in Sources */,
 				FD53A5F12237F747008AD447 /* Configs.swift in Sources */,
+				FD01A3F6223A8E80000550F0 /* JCNewsModel.swift in Sources */,
 				FDA568512213F654008F7697 /* JCTabBarController.swift in Sources */,
 				FD53A5F82237FC3B008AD447 /* JCRequestPlugin.swift in Sources */,
+				FD01A3F4223A2B31000550F0 /* JCProvider.swift in Sources */,
 				FD3EFCB521DD1F8200D87A3E /* AppDelegate.swift in Sources */,
 				FD3EFCFC21DD201C00D87A3E /* Common.swift in Sources */,
 				FD53A5FA2237FF7F008AD447 /* JCProgressHud.swift in Sources */,
 				FD3EFCEA21DD200300D87A3E /* HomeNavigationView.swift in Sources */,
+				FD01A3F8223A8EDD000550F0 /* JCNewsViewModel.swift in Sources */,
 				FD53A5F62237F8FC008AD447 /* APIManager.swift in Sources */,
 				FDA5685E22144723008F7697 /* JCMineViewController.swift in Sources */,
 				FDA5685A22144706008F7697 /* JCMomentsViewController.swift in Sources */,

@@ -6,11 +6,16 @@
 //  Copyright © 2019 yellow. All rights reserved.
 //
 
+import MJRefresh
 import Moya
 import RxSwift
 import UIKit
 
 class JCHomeViewController: JCViewController {
+    let viewModel = JCNewsViewModel()
+
+    var tableView = UITableView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,25 +25,36 @@ class JCHomeViewController: JCViewController {
 
         view.addSubview(navigationBar)
 
-//        let parameters: Dictionary = ["channelId": "30", "cursor": "\(getCurrentTimes())", "slipType": "UP"]
+        tableView = UITableView(frame: CGRect(x: 0, y: kNavigationBarHeight, width: kScreenW, height: kScreenH - kNavigationBarHeight - kBottomSafeHeight), style: UITableViewStyle.plain)
 
-        MoyaProvider<APIManager>(plugins: [JCRequestPlugin(), netWorkActivityPlugin]).request(.getHomeList(channelId: 30, timestamp: getCurrentTimes(), slipType: "UP")) { result in
+        tableView.register(JCNewsCell.self, forCellReuseIdentifier: cellId)
 
-            print("moyaRequest == " + result.result.debugDescription)
+        tableView.estimatedRowHeight = 100
+
+        tableView.tableFooterView = UIView()
+
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior(rawValue: 2)!
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
         }
-    }
 
-    // 获取时间戳
-    func getCurrentTimes() -> Int {
-        // 获取当前时间
-        let now = NSDate()
+        view.addSubview(tableView)
 
-        // 创建一个日期格式器
-        let dformatter = DateFormatter()
-        dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        viewModel.tableView = tableView
 
-        // 当前时间的时间戳
-        let timeInterval: TimeInterval = now.timeIntervalSince1970
-        return Int(timeInterval)
+        viewModel.SetConfig()
+
+        weak var weakself = self
+
+        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            weakself?.viewModel.requestNewDataCommond.onNext(true)
+        })
+
+        tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
+            weakself?.viewModel.requestNewDataCommond.onNext(false)
+        })
+
+        tableView.mj_header.beginRefreshing()
     }
 }

@@ -12,9 +12,12 @@ target 'WuLiTT' do
 #pod 'JCEndPoint',:git => "https://github.com/huqigu/JCEndPoint.git"
   pod 'RxSwift'
   pod 'Moya/RxSwift'
+  pod 'Moya-ObjectMapper/RxSwift'
   pod 'ObjectMapper'
   pod 'NVActivityIndicatorView'
   pod 'SVProgressHUD', '~> 2.1.2'
+  pod 'MJRefresh'
+  pod 'Kingfisher'
   # Pods for WuLiTT
 
   target 'WuLiTTTests' do

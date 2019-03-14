@@ -30,8 +30,8 @@ public final class JCRequestPlugin: PluginType {
     public func didReceive(_ result: Result<Response, MoyaError>, target _: TargetType) {
         switch result {
         case let .success(response):
-            let json: Dictionary? = try! JSONSerialization.jsonObject(with: response.data, options: .allowFragments) as! [String: Any]
-            print(json as Any)
+//            let json: Dictionary? = try! JSONSerialization.jsonObject(with: response.data, options: .allowFragments) as! [String: Any]
+//            print(json as Any)
             JCProgressHUD.showSuccess("加载成功")
         case .failure:
             JCProgressHUD.showError("加载失败")
