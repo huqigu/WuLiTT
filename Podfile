@@ -11,6 +11,7 @@ target 'WuLiTT' do
 #  pod 'SwiftyJSON', '~> 4.0'
 #pod 'JCEndPoint',:git => "https://github.com/huqigu/JCEndPoint.git"
   pod 'RxSwift'
+  pod 'RxDataSources'
   pod 'Moya/RxSwift'
   pod 'Moya-ObjectMapper/RxSwift'
   pod 'ObjectMapper'

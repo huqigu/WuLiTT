@@ -27,9 +27,11 @@ class JCHomeViewController: JCViewController {
 
         tableView = UITableView(frame: CGRect(x: 0, y: kNavigationBarHeight, width: kScreenW, height: kScreenH - kNavigationBarHeight - kBottomSafeHeight), style: UITableViewStyle.plain)
 
-        tableView.register(JCNewsCell.self, forCellReuseIdentifier: cellId)
+//        tableView.register(JCNewsCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(JCNewsSingleImageCell.self, forCellReuseIdentifier: singleImageCellId)
+        tableView.register(JCNewsThreeImageCell.self, forCellReuseIdentifier: threeImageCellId)
 
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 120
 
         tableView.tableFooterView = UIView()
 
@@ -54,6 +56,10 @@ class JCHomeViewController: JCViewController {
         tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
             weakself?.viewModel.requestNewDataCommond.onNext(false)
         })
+
+        tableView.rx.itemSelected.subscribe(onNext: { indexPath in
+            print("选中项的indexPath为：\(indexPath)")
+        }).disposed(by: disposeBag)
 
         tableView.mj_header.beginRefreshing()
     }

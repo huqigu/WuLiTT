@@ -16,6 +16,7 @@ struct JCNewsModel: Mappable {
     var newsImageList: [JCNewsImageModel]?
     var origin: String?
     var originLink: String?
+    var layoutType: String?
 
     init?(map _: Map) {}
 
@@ -26,6 +27,7 @@ struct JCNewsModel: Mappable {
         newsImageList <- map["newsImageInfoList"]
         origin <- map["origin"]
         originLink <- map["originLink"]
+        layoutType <- map["layoutType"]
     }
 }
 

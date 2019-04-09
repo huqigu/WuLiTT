@@ -15,10 +15,10 @@ let netWorkActivityPlugin = NetworkActivityPlugin { (_ change: NetworkActivityCh
 
     switch change {
     case .ended:
-        NVActivityIndicatorPresenter.sharedInstance.stopAnimating(nil)
+//        NVActivityIndicatorPresenter.sharedInstance.stopAnimating(nil)
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     case .began:
-        NVActivityIndicatorPresenter.sharedInstance.startAnimating(ActivityData(type: .circleStrokeSpin), nil)
+//        NVActivityIndicatorPresenter.sharedInstance.startAnimating(ActivityData(type: .circleStrokeSpin), nil)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
 }

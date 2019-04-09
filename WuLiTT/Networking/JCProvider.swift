@@ -63,6 +63,7 @@ extension MoyaProvider {
 
             }, onError: { _ in
                 JCProgressHUD.showError("网络请求超时，请检查网络状态！")
+                single(.error(DataError.customError))
             })
 
             return Disposables.create([request])
@@ -86,6 +87,7 @@ extension MoyaProvider {
 
             }, onError: { _ in
                 JCProgressHUD.showError("网络请求超时，请检查网络状态！")
+                single(.error(DataError.customError))
             })
 
             return Disposables.create([request])

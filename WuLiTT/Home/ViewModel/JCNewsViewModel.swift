@@ -11,10 +11,14 @@ import Kingfisher
 import MJRefresh
 import Moya
 import RxCocoa
+import RxDataSources
 import RxSwift
 import UIKit
 
 let cellId = "JCNewsCellId"
+
+let singleImageCellId = "JCNewsSingleImageCell"
+let threeImageCellId = "JCNewsThreeImageCell"
 
 enum JCRefreshStatus {
     case none
@@ -30,7 +34,9 @@ class JCNewsViewModel: NSObject {
 
     let requestMessageList = PublishSubject<Bool>()
 
-    var modelObserable = Variable<[JCNewsModel]>([])
+//    var modelObserable = Variable<[JCNewsModel]>([])
+
+    var modelObserable = Variable<[SectionModel<String, JCNewsModel>]>([])
 
     var refreshStateObserable = Variable<JCRefreshStatus>(.none)
 
@@ -42,25 +48,45 @@ class JCNewsViewModel: NSObject {
 
     func SetConfig() {
         // 绑定tableView
-        modelObserable.asObservable().bind(to: tableView.rx.items(cellIdentifier: cellId, cellType: JCNewsCell.self)) { _, model, cell in
+        // 单个cell时
+//        modelObserable.asObservable().bind(to: tableView.rx.items(cellIdentifier: cellId, cellType: JCNewsCell.self)) { _, model, cell in
+//
+//            cell.titleLabel?.text = model.title
+//
+//            if (model.newsImageList!.count) != 0 {
+//                let newsImageModel: JCNewsImageModel = model.newsImageList![0]
+//                let url = URL(string: newsImageModel.url!)
+//                cell.mImageView?.kf.setImage(with: url)
+//            }
+//
+//        }.disposed(by: bag)
 
-            cell.titleLabel?.text = model.title
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, JCNewsModel>>(configureCell: { (_, tv, indexPath, newsModel) -> UITableViewCell in
 
-            if (model.newsImageList!.count) != 0 {
-                let newsImageModel: JCNewsImageModel = model.newsImageList![0]
-                let url = URL(string: newsImageModel.url!)
-                cell.mImageView?.kf.setImage(with: url)
+            if (newsModel.newsImageList?.count)! <= 2 {
+                let cell = tv.dequeueReusableCell(withIdentifier: singleImageCellId, for: indexPath) as! JCNewsSingleImageCell
+
+                cell.newsModel = newsModel
+
+                return cell
+            } else {
+                let cell = tv.dequeueReusableCell(withIdentifier: threeImageCellId, for: indexPath) as! JCNewsThreeImageCell
+
+                cell.newsModel = newsModel
+
+                return cell
             }
+        })
 
-        }.disposed(by: bag)
-
+        modelObserable.asObservable().bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: bag)
+        
         // 请求数据
         requestNewDataCommond.subscribe { (event: Event<Bool>) in
 
             if event.element! { // 刷新
                 provider.requestModelList(.getHomeList(channelId: 30, timestamp: self.getCurrentTimes(), slipType: "DOWN"), JCNewsModel.self).subscribe(onSuccess: { modelList in
 
-                    self.modelObserable.value = modelList
+                    self.modelObserable.value = [SectionModel(model: "", items: modelList)]
                     self.refreshStateObserable.value = .endHeaderRefresh
 
                 }, onError: { _ in
@@ -72,7 +98,9 @@ class JCNewsViewModel: NSObject {
             } else { // 加载更多
                 provider.requestModelList(.getHomeList(channelId: 30, timestamp: self.getCurrentTimes(), slipType: "UP"), JCNewsModel.self).subscribe(onSuccess: { modelList in
 
-                    self.modelObserable.value += modelList
+                    self.modelObserable.value.append(SectionModel(model: "", items: modelList))
+
+//                    self.modelObserable.value += modelList
                     self.refreshStateObserable.value = .endFooterRefresh
 
                 }, onError: { _ in
