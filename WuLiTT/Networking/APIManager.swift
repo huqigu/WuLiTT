@@ -60,10 +60,22 @@ extension APIManager: TargetType {
         return URLEncoding.default
     }
 
-    public var task: Task {
+    var parameters: [String: Any]? {
+        var params: [String: Any] = [:]
         switch self {
         case let .getHomeList(channelId, timestamp, slipType):
-            return .requestParameters(parameters: ["channelId": channelId, "cursor": timestamp, "slipType": slipType], encoding: URLEncoding.default)
+            params["channelId"] = channelId
+            params["cursor"] = timestamp
+            params["slipType"] = slipType
+        default: break
+        }
+        return params
+    }
+
+    public var task: Task {
+        switch self {
+        case let .getHomeList:
+            return .requestParameters(parameters: parameters!, encoding: parameterEncoding)
         default:
             return .requestPlain
         }

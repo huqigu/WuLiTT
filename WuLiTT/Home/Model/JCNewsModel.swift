@@ -17,6 +17,8 @@ struct JCNewsModel: Mappable {
     var origin: String?
     var originLink: String?
     var layoutType: String?
+    var detailLink: String?
+    var srcLink: String?
 
     init?(map _: Map) {}
 
@@ -28,6 +30,7 @@ struct JCNewsModel: Mappable {
         origin <- map["origin"]
         originLink <- map["originLink"]
         layoutType <- map["layoutType"]
+        srcLink <- map["srcLink"]
     }
 }
 

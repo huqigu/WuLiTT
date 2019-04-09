@@ -79,7 +79,7 @@ class JCNewsViewModel: NSObject {
         })
 
         modelObserable.asObservable().bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: bag)
-        
+
         // 请求数据
         requestNewDataCommond.subscribe { (event: Event<Bool>) in
 

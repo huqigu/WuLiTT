@@ -58,9 +58,22 @@ class JCHomeViewController: JCViewController {
         })
 
         tableView.rx.itemSelected.subscribe(onNext: { indexPath in
-            print("选中项的indexPath为：\(indexPath)")
+            let webVC = JCWebViewController()
+            let newsModel = self.viewModel.modelObserable.value[indexPath.section].items[indexPath.row]
+            webVC.urlString = newsModel.srcLink!
+            self.navigationController?.pushViewController(webVC, animated: true)
         }).disposed(by: disposeBag)
 
         tableView.mj_header.beginRefreshing()
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(testFunc))
+        tableView.addGestureRecognizer(tap)
+    }
+
+    @objc func testFunc() {
+        let webVC = JCWebViewController()
+
+        webVC.urlString = "https://mp.weixin.qq.com/s?__biz=MjM5OTcxOTY2Nw==&amp;mid=2650771308&amp;idx=1&amp;sn=c9d881d5f56d0777bc2fd30f2b552d6d&amp;chksm=bf3c08f0884b81e6cbbcf2d89dd9dd31b442a5c42d2c852a60562956e882ae07d1f53705ebd6&amp;scene=27"
+        navigationController?.pushViewController(webVC, animated: true)
     }
 }
