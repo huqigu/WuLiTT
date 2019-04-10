@@ -57,6 +57,21 @@ class JCHomeViewController: JCViewController {
             weakself?.viewModel.requestNewDataCommond.onNext(false)
         })
 
+        viewModel.refreshStateObserable.asObservable().subscribe(onNext: { state in
+            switch state {
+            case .beginHeaderRefresh, .beginFooterRefresh:
+                let tabBarController = weakself?.tabBarController as! JCTabBarController
+                tabBarController.customTabBar!.refreshAnimation()
+                break
+            case .endHeaderRefresh, .endFooterRefresh, .noMoreData:
+                let tabBarController = weakself?.tabBarController as! JCTabBarController
+                tabBarController.customTabBar!.removeAnimation()
+                break
+            default:
+                break
+            }
+        }).disposed(by: disposeBag)
+
         tableView.rx.itemSelected.subscribe(onNext: { indexPath in
             let webVC = JCWebViewController()
             let newsModel = self.viewModel.modelObserable.value[indexPath.section].items[indexPath.row]

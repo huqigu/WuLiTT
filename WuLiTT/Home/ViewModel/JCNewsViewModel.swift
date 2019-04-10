@@ -84,6 +84,7 @@ class JCNewsViewModel: NSObject {
         requestNewDataCommond.subscribe { (event: Event<Bool>) in
 
             if event.element! { // 刷新
+                self.refreshStateObserable.value = JCRefreshStatus.beginHeaderRefresh
                 provider.requestModelList(.getHomeList(channelId: 30, timestamp: self.getCurrentTimes(), slipType: "DOWN"), JCNewsModel.self).subscribe(onSuccess: { modelList in
 
                     self.modelObserable.value = [SectionModel(model: "", items: modelList)]
@@ -96,6 +97,7 @@ class JCNewsViewModel: NSObject {
                 }).disposed(by: self.bag)
 
             } else { // 加载更多
+                self.refreshStateObserable.value = JCRefreshStatus.beginFooterRefresh
                 provider.requestModelList(.getHomeList(channelId: 30, timestamp: self.getCurrentTimes(), slipType: "UP"), JCNewsModel.self).subscribe(onSuccess: { modelList in
 
                     self.modelObserable.value.append(SectionModel(model: "", items: modelList))

@@ -21,6 +21,20 @@ class JCViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        for subViews in (tabBarController?.tabBar.subviews)! {
+            if subViews.isKind(of: NSClassFromString("UITabBarButton")!) {
+                subViews.removeFromSuperview()
+            }
+
+            if subViews.isKind(of: NSClassFromString("_UIBarBackground")!) {
+                subViews.isHidden = true
+            }
+        }
+    }
+
     /*
      // MARK: - Navigation
 
