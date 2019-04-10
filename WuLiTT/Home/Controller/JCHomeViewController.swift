@@ -66,8 +66,8 @@ class JCHomeViewController: JCViewController {
 
         tableView.mj_header.beginRefreshing()
 
-        let tap = UITapGestureRecognizer(target: self, action: #selector(testFunc))
-        tableView.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(testFunc))
+//        tableView.addGestureRecognizer(tap)
     }
 
     @objc func testFunc() {

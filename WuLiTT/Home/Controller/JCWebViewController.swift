@@ -6,6 +6,7 @@
 //  Copyright © 2019 yellow. All rights reserved.
 //
 
+import RxSwift
 import UIKit
 import WebKit
 
@@ -17,6 +18,8 @@ class JCWebViewController: UIViewController, WKUIDelegate {
     let configuration = WKWebViewConfiguration()
 
     var urlString = ""
+
+    let webDisposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +48,7 @@ class JCWebViewController: UIViewController, WKUIDelegate {
                         self?.progressView.progress = 0.0
                     }
                 }
-            }).disposed(by: disposeBag)
+            }).disposed(by: webDisposeBag)
 
         progressView = UIProgressView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 2.0))
         progressView.backgroundColor = UIColor.clear
